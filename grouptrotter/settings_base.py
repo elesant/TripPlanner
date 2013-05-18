@@ -145,3 +145,9 @@ YELP_API_CONSTANTS = {
 AIRBNB_API_CONSTANTS = {
   'HOST': 'https://airbnb.p.mashape.com/s'
 }
+
+# Eventbrite API
+EVENTBRITE_API_CONSTANTS = {
+  'HOST': 'https://www.eventbrite.com/json/event_search',
+  'APP_KEY': 'IDC723HSMKYMVB2IRY'
+}

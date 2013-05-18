@@ -10,6 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 from core.models import Plan, User
 from core.utils.yelp import make_yelp_request
 from core.utils.airbnb import make_airbnb_request
+from core.utils.eventbrite import make_eventbrite_request
 from django.contrib.auth.decorators import login_required
 from firebase import firebase
 
@@ -141,6 +142,16 @@ def api_collaborator_add(request):
         return response, 201
     else:
         return response, 403
+
+@csrf_exempt
+@ajax_endpoint
+def get_events_recommendations(request):
+  url_params = {}
+  # TODO add check-in, check-out, num_guests
+  url_params['city'] = request.GET.get('address')
+  num_results = 10
+  response = make_eventbrite_request(url_params)
+  return response, 200
 
 @csrf_exempt
 @ajax_endpoint
