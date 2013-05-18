@@ -17,4 +17,3 @@ rauth==0.5.4
 requests==1.1.0
 six==1.3.0
 wsgiref==0.1.2
-requests
