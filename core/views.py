@@ -9,6 +9,7 @@ from core.decorators import ajax_endpoint
 from django.views.decorators.csrf import csrf_exempt
 from core.models import Plan, User
 from core.utils.yelp import make_yelp_request
+from core.utils.airbnb import make_airbnb_request
 from django.contrib.auth.decorators import login_required
 from firebase import firebase
 
@@ -143,7 +144,30 @@ def api_collaborator_add(request):
 
 @csrf_exempt
 @ajax_endpoint
-def get_yelp_data(request):
+def get_accomodations_recommendations(request):
+  url_params = {}
+  # TODO add check-in, check-out, num_guests
+  url_params['location'] = request.GET.get('address')
+  num_results = 10
+  response = make_airbnb_request(url_params).body
+  return response, 200
+
+@csrf_exempt
+@ajax_endpoint
+def get_attractions_recommendations(request):
+  location = request.GET.get('address')
+  num_results = 10
+  url_params = {
+    'term': 'major attractions',
+    'location': location,
+    'limit': num_results
+  }
+  response = make_yelp_request(url_params)
+  return response, 200
+
+@csrf_exempt
+@ajax_endpoint
+def get_food_recommendations(request):
   location = request.GET.get('address')
   num_results = 10
   url_params = {
