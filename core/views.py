@@ -27,6 +27,7 @@ def index(request):
 
 
 def facebook_login(request):
+    request.session['login_redirect_url'] = request.GET.get('next', '/#')
     login_link = 'https://www.facebook.com/dialog/oauth?' + urllib.urlencode(
         {
             'client_id': settings.FACEBOOK_APP_ID,

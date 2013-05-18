@@ -28,4 +28,9 @@ class FacebookMiddleware(object):
                     else:
                         user = facebook_connect(user_data)
                         instant_login(request, user)
-                    return HttpResponsePermanentRedirect(redirect_uri + '#')
+                    if 'login_redirect_url' in request.session:
+                        login_redirect_url = request.session['login_redirect_url']
+                    else:
+                        login_redirect_url = '/#'
+                    request.session['login_redirect_url'] = '/#'
+                    return HttpResponsePermanentRedirect(login_redirect_url)
