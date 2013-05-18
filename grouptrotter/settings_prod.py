@@ -24,9 +24,9 @@ STATIC_URL = 'https://s3.amazonaws.com/grouptrotter/'
 MEDIA_URL = 'https://s3.amazonaws.com/grouptrotter/'
 
 # Facebook Information
-FACEBOOK_APP_ID = ''
-FACEBOOK_APP_SECRET = ''
+FACEBOOK_APP_ID = '132305200298528'
+FACEBOOK_APP_SECRET = 'ac86a28d1b4209937fee5b16ed89baa7'
 
 # AWS Information
-AWS_ACCESS_KEY_ID = ''
-AWS_SECRET_ACCESS_KEY = ''
+AWS_ACCESS_KEY_ID = 'AKIAIWUXQY7UILQNXKDA'
+AWS_SECRET_ACCESS_KEY = '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'

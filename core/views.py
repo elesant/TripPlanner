@@ -1,10 +1,6 @@
 import urllib
-import urllib2
-import json
-import oauth2
-
 from core.utils.network import get_domain
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.template import RequestContext
 from django.shortcuts import render_to_response
 from django.conf import settings
@@ -18,6 +14,12 @@ from django.contrib.auth.decorators import login_required
 from firebase import firebase
 
 
+def view_landing(request):
+    context = RequestContext(request)
+    return render_to_response('landing.html', context)
+
+
+@login_required
 def index(request):
     context = RequestContext(request)
     return render_to_response('index.html', context)
@@ -44,6 +46,17 @@ def logout(request):
 def app(request):
     context = RequestContext(request)
     return render_to_response('app.html', context)
+
+
+@login_required
+def view_plan(request, plan_id=None):
+    context = RequestContext(request)
+    try:
+        plan = Plan.objects.get(id=plan_id)
+        context['plan'] = plan
+    except Plan.DoesNotExist:
+        raise Http404
+    return render_to_response('plan.html', context)
 
 
 @csrf_exempt
