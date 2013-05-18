@@ -75,6 +75,7 @@ class Collaboration(models.Model):
 
     def __unicode__(self):
         return '%s <-> %s' % (self.collaborator.email, self.plan)
+
     class Meta:
         db_table = 'table_collaboration'
         unique_together = ('collaborator', 'plan')
