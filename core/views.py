@@ -78,15 +78,16 @@ def api_collaborator_add(request):
 @csrf_exempt
 @ajax_endpoint
 def get_yelp_data(request):
-  #address = request['address']
+  location = request.GET.get('address')
+  num_results = 10
   consumer_key = 'wK9mRik-g9SFrrlRfvPAsQ'
   consumer_secret = 'hVvcWP5l4cuC8SpiaJrE7LpMIzQ'
   token = 'DFvHLSzfNqQDbsuLs-1T-zPk-mkZ0Z0d'
   token_secret = 'S4pO5Tn65qnP6JMq8Bi1XhDrcDk'
   url_params = {
-    'term': 'bars',
-    'location': 'sf',
-    'limit': 10
+    'term': 'food',
+    'location': location,
+    'limit': num_results
   }
   response = make_yelp_request('api.yelp.com', '/v2/search', url_params, consumer_key, consumer_secret, token, token_secret)
   return response, 200
