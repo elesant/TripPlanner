@@ -31,6 +31,9 @@ def logout(request):
     auth.logout(request)
     return HttpResponseRedirect('/')
 
+def app(request):
+    context = RequestContext(request)
+    return render_to_response('app.html', context)
 
 @csrf_exempt
 @ajax_endpoint
