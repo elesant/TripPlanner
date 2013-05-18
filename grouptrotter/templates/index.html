@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Index{% endblock %}
+{% block title %}Home | GroupTrotter{% endblock %}
 
 {% block content %}
 
@@ -8,7 +8,7 @@
 
 <div ng-app="app">
   <div class="navbar" >
-    <a class="navbar-brand" href="#">TripTogether</a>
+    <a class="navbar-brand" href="#">GroupTrotter</a>
     <ul class="nav navbar-nav">
       <li class="active"><a href="#">Home</a></li>
       <li><a href="#">Link</a></li>
@@ -43,6 +43,27 @@
 <a class="btn btn-default" href="/logout">Logout</a>
 {% else %}
 <a class="btn btn-primary" href="/facebook-login">Facebook Connect</a>
+{% endif %}
+
+{% if user.is_authenticated %}
+
+<div id="plan-list"></div>
+
+<script>
+
+$(document).ready(function() {
+
+  $.get('/api/plan/list', function(data) {
+    var plan_list = data['plans'];
+    plan_list.forEach(function(element, index, array) {
+      $('#plan-list').append(element['title']);
+    });
+  });
+
+});
+
+</script>
+
 {% endif %}
 
 {% endblock %}
