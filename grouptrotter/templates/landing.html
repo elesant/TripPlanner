@@ -4,6 +4,31 @@
 
 {% block content %}
 
-<a class="btn btn-primary" href="/facebook-login">Facebook Connect</a>
+<ul id="cbp-bislideshow" class="cbp-bislideshow">
+    <li><img src="/static/img/1.jpg" alt="image01"/></li>
+    <li><img src="/static/img/2.jpg" alt="image01"/></li>
+    <li><img src="/static/img/3.jpg" alt="image01"/></li>
+</ul>
+
+<div class="landing-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="landing center">
+        <h1>Group Trip Planning<br>Made Easy.</h1>
+        <h2>Planning a trip with friends should be exciting, not frustrating.  Grouptrotter keeps everyone in the know and lets you have fun while deciding on your next adventure.<br><br>
+          <strong>Start planning now! It's free.</strong></h2>
+
+        <a class="btn btn-warning" href="/facebook-login">Get Started</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{{ STATIC_URL }}js/libs/cbpBGSlideshow.js"></script>
+<script>
+    $(function() {
+        cbpBGSlideshow.init();
+    });
+</script>
 
 {% endblock %}

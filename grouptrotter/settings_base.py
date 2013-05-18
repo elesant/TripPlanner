@@ -93,6 +93,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
+    'raven.contrib.django.raven_compat',
     'compressor',
     'south',
     'core',
