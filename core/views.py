@@ -59,7 +59,7 @@ def api_plan_add(request):
         'title': new_plan.title,
         'collaborators': [user.id for user in new_plan.get_collaborators()],
     }
-    result = fb_obj.put(plan_url, new_plan.id, data)
+    result = fb_obj.put(plan_url, new_plan.id, data, connection=None)
     response['plan_id'] = new_plan.id
     response['collaborator_id'] = request.user.id
     response['firebase_result'] = result
@@ -81,7 +81,7 @@ def api_plan_update(request):
     data = {
         'title': plan.title,
     }
-    result = fb_obj.patch(plan_url, data)
+    result = fb_obj.patch(plan_url, data, connection=None)
     response['plan_id'] = plan.id
     response['collaborator_id'] = request.user.id
     response['firebase_result'] = result
@@ -104,7 +104,7 @@ def api_collaborator_add(request):
         data = {
             'collaborators': [user.id for user in plan.get_collaborators()],
         }
-        result = fb_obj.patch(plan_url, data)
+        result = fb_obj.patch(plan_url, data, connection=None)
         response['plan_id'] = plan_id
         response['collaborator_id'] = collaborator_id
         response['firebase_result'] = result
