@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for i in hackbase core
+for i in grouptrotter core
 do
 	echo "Checking: $i"
 	pylint --rcfile=tools/pylint.rc $i

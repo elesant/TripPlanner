@@ -3,7 +3,7 @@ from settings_base import *
 ENVIRONMENT = 'PROD'
 
 ALLOWED_HOSTS = [
-    'hackbase.herokuapp.com',
+    'grouptrotter.herokuapp.com',
 ]
 
 DEBUG = False
@@ -12,7 +12,7 @@ DAJAXICE_DEBUG = DEBUG
 
 STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-AWS_STORAGE_BUCKET_NAME = 'hackbase'
+AWS_STORAGE_BUCKET_NAME = 'grouptrotter'
 AWS_S3_FILE_OVERWRITE = True
 AWS_QUERYSTRING_AUTH = False
 AWS_HEADERS = {
@@ -20,8 +20,8 @@ AWS_HEADERS = {
 }
 COMPRESS_STORAGE = STATICFILES_STORAGE
 
-STATIC_URL = 'https://s3.amazonaws.com/hackbase/'
-MEDIA_URL = 'https://s3.amazonaws.com/hackbase/'
+STATIC_URL = 'https://s3.amazonaws.com/grouptrotter/'
+MEDIA_URL = 'https://s3.amazonaws.com/grouptrotter/'
 
 # Facebook Information
 FACEBOOK_APP_ID = ''
