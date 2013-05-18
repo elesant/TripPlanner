@@ -56,7 +56,7 @@ $(document).ready(function() {
   $.get('/api/plan/list', function(data) {
     var plan_list = data['plans'];
     plan_list.forEach(function(element, index, array) {
-      $('#plan-list').append(element['title']);
+      $('#plan-list').append('<div class="well"><a href="/plan/' + element['id'] + '">' + element['title'] + '</a></div>');
     });
   });
 
