@@ -8,5 +8,6 @@ urlpatterns = patterns('core.views',
     url(r'^logout/$', 'logout'),
     url(r'^get_yelp_data$', 'get_yelp_data'),
     url(r'^api/plan/add/$', 'api_plan_add'),
+    url(r'^api/plan/update/$', 'api_plan_update'),
     url(r'^api/collaborator/add/$', 'api_collaborator_add'),
 )
