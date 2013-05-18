@@ -13,6 +13,12 @@ from django.contrib.auth.decorators import login_required
 from firebase import firebase
 
 
+def view_landing(request):
+    context = RequestContext(request)
+    return render_to_response('landing.html', context)
+
+
+@login_required
 def index(request):
     context = RequestContext(request)
     return render_to_response('index.html', context)

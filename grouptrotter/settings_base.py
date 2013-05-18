@@ -129,6 +129,8 @@ LOGGING = {
 
 AUTH_USER_MODEL = 'core.User'
 
+LOGIN_URL = '/landing/'
+
 # Yelp API
 YELP_API_CONSTANTS = {
   'CONSUMER_KEY': 'wK9mRik-g9SFrrlRfvPAsQ',

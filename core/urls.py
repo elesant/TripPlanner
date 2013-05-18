@@ -4,6 +4,7 @@ from django.conf.urls import patterns, url
 urlpatterns = patterns('core.views',
     url(r'^$', 'index'),
     url(r'^app/$', 'app'),
+    url(r'^landing/$', 'view_landing'),
     url(r'^facebook-login/$', 'facebook_login'),
     url(r'^logout/$', 'logout'),
     url(r'^plan/(?P<plan_id>\d+)/$', 'view_plan'),
