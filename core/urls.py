@@ -16,4 +16,5 @@ urlpatterns = patterns('core.views',
     url(r'^api/plan/add/$', 'api_plan_add'),
     url(r'^api/plan/update/$', 'api_plan_update'),
     url(r'^api/collaborator/add/$', 'api_collaborator_add'),
+    url(r'^api/link/summarize/$', 'api_link_summarize'),
 )

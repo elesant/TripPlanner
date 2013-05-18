@@ -114,6 +114,7 @@ INSTALLED_APPS = (
     'compressor',
     'south',
     'core',
+    'summy',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -151,12 +152,12 @@ LOGIN_URL = '/landing/'
 
 # Yelp API
 YELP_API_CONSTANTS = {
-  'CONSUMER_KEY': 'wK9mRik-g9SFrrlRfvPAsQ',
-  'CONSUMER_SECRET': 'hVvcWP5l4cuC8SpiaJrE7LpMIzQ',
-  'TOKEN': 'DFvHLSzfNqQDbsuLs-1T-zPk-mkZ0Z0d',
-  'TOKEN_SECRET': 'S4pO5Tn65qnP6JMq8Bi1XhDrcDk',
-  'HOST': 'api.yelp.com',
-  'PATH': '/v2/search'
+    'CONSUMER_KEY': 'wK9mRik-g9SFrrlRfvPAsQ',
+    'CONSUMER_SECRET': 'hVvcWP5l4cuC8SpiaJrE7LpMIzQ',
+    'TOKEN': 'DFvHLSzfNqQDbsuLs-1T-zPk-mkZ0Z0d',
+    'TOKEN_SECRET': 'S4pO5Tn65qnP6JMq8Bi1XhDrcDk',
+    'HOST': 'api.yelp.com',
+    'PATH': '/v2/search'
 }
 
 # Airbnb API

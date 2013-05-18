@@ -13,6 +13,8 @@ from core.utils.airbnb import make_airbnb_request
 from core.utils.eventbrite import make_eventbrite_request
 from django.contrib.auth.decorators import login_required
 from firebase import firebase
+from summy import summy
+import urllib2
 
 
 def view_landing(request):
@@ -58,6 +60,15 @@ def view_plan(request, plan_id=None):
     except Plan.DoesNotExist:
         raise Http404
     return render_to_response('plan.html', context)
+
+
+@csrf_exempt
+@ajax_endpoint
+def api_link_summarize(request):
+    link = request.POST['link']
+    doc = urllib2.urlopen(link)
+    response = summy.summarize(doc.read())
+    return response, 200
 
 
 @csrf_exempt
