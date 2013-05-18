@@ -1,5 +1,5 @@
 from django.contrib import admin
-from core.models import User
+from core.models import User, Plan, Collaboration
 from django.contrib.sessions.models import Session
 
 
@@ -24,5 +24,18 @@ class UserAdmin(admin.ModelAdmin):
     filter_horizontal = ['groups', 'user_permissions']
 
 
+class CollaborationInline(admin.StackedInline):
+    model = Collaboration
+    extra = 0
+
+
+class PlanAdmin(admin.ModelAdmin):
+
+    inlines = [CollaborationInline]
+    list_display = ('title', 'time_created', 'time_modified')
+    search_fields = ['title']
+
 admin.site.register(User, UserAdmin)
 admin.site.register(Session)
+admin.site.register(Plan, PlanAdmin)
+admin.site.register(Collaboration)
