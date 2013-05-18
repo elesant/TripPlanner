@@ -20,7 +20,7 @@ controllers.EventListController = function($scope, angularFire) {
     }
 
     $scope.add = function() {
-        $scope.items.push('Item: '+$scope.items.length);
+        $scope.items.push('Item: '+ $scope.items.length);
     }
 
     sortableEle = $('.events-sortable').sortable({
@@ -39,6 +39,7 @@ controllers.PlanListController = function($scope, angularFire) {
   var promise = angularFire(url, $scope, 'plans');
 
   function startWatch($scope) {
+
   }
 
   promise.then(function(plans) {

@@ -6,6 +6,8 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 DAJAXICE_DEBUG = DEBUG
 
+COMPRESS_ENABLED = True
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',

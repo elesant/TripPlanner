@@ -170,3 +170,7 @@ EVENTBRITE_API_CONSTANTS = {
   'HOST': 'https://www.eventbrite.com/json/event_search',
   'APP_KEY': 'IDC723HSMKYMVB2IRY'
 }
+
+COMPRESS_JS_FILTERS = [
+    'compressor.filters.template.TemplateFilter',
+]
