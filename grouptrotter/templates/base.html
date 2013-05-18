@@ -15,14 +15,13 @@
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
 
   {% compress css %}
-  <link rel="stylesheet/less" type="text/css" href="{{ STATIC_URL }}less/bootstrap/bootstrap.less" />
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/component.css" />
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/background-slideshow.css" />
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.css" />
   {% endcompress %}
 
   {% compress js %}
-  <script src="{{ STATIC_URL }}js/libs/less.js"></script>
   <script src="{{ STATIC_URL }}js/libs/jquery.js"></script>
   <script src="{{ STATIC_URL }}js/libs/jquery-ui-1.10.3.custom.min.js"></script>
   <script src="{{ STATIC_URL }}js/libs/jquery.imagesloaded.min.js"></script>
@@ -34,6 +33,12 @@
   <script src="{{ STATIC_URL }}js/animations.js"></script>
   <script src="{{ STATIC_URL }}js/controllers.js"></script>
   {% endcompress %}
+
+  <!-- LESS -->
+  {% if DEBUG %}
+  <script src="{{ STATIC_URL }}js/libs/less.js"></script>
+  <link rel="stylesheet/less" type="text/css" href="{{ STATIC_URL }}less/bootstrap/bootstrap.less" />
+  {% endif %}
 
   <script src="{{ STATIC_URL }}js/bootstrap/bootstrap-transition.js"></script>
   <script src="{{ STATIC_URL }}js/bootstrap/bootstrap-collapse.js"></script>
