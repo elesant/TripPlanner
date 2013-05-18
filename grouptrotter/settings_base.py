@@ -139,3 +139,7 @@ YELP_API_CONSTANTS = {
   'PATH': '/v2/search'
 }
 
+# Airbnb API
+AIRBNB_API_CONSTANTS = {
+  'HOST': 'https://airbnb.p.mashape.com/s'
+}
