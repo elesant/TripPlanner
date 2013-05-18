@@ -4,6 +4,8 @@ ENVIRONMENT = 'PROD'
 
 ALLOWED_HOSTS = [
     'grouptrotter.herokuapp.com',
+    'grouptrotter.ca',
+    'www.grouptrotter.ca',
 ]
 
 DEBUG = False
