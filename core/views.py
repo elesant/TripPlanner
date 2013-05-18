@@ -47,6 +47,21 @@ def app(request):
 @csrf_exempt
 @login_required
 @ajax_endpoint
+def api_plan_list(request):
+    response = {}
+    plans = request.user.get_plans()
+    response['plans'] = []
+    for plan in plans:
+        datum = {}
+        datum['id'] = plan.id
+        datum['title'] = plan.title
+        response['plans'].append(datum)
+    return response, 200
+
+
+@csrf_exempt
+@login_required
+@ajax_endpoint
 def api_plan_add(request):
     response = {}
     title = request.POST['title']
