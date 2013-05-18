@@ -44,6 +44,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     def get_short_name(self):
         return self.email
 
+    def get_plans(self):
+        plans = [collaboration.plan for collaboration in Collaboration.objects.filter(collaborator=self)]
+        return plans
+
     objects = CustomUserManager()
 
     USERNAME_FIELD = 'email'
