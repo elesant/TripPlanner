@@ -63,6 +63,17 @@ class Plan(models.Model):
     def __unicode__(self):
         return self.title
 
+    def add_collaborator(self, user):
+        new_collaboration = Collaboration()
+        new_collaboration.collaborator = user
+        new_collaboration.plan = self
+        new_collaboration.save()
+        return new_collaboration
+
+    def get_collaborators(self):
+        collaborators = [collaboration.collaborator for collaboration in Collaboration.objects.filter(plan=self)]
+        return collaborators
+
     class Meta:
         db_table = 'table_plan'
 

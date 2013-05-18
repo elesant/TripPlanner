@@ -6,5 +6,6 @@ urlpatterns = patterns('core.views',
     url(r'^app/$', 'app'),
     url(r'^facebook-login/$', 'facebook_login'),
     url(r'^logout/$', 'logout'),
-    url(r'^test/$', 'test_endpoint'),
+    url(r'^api/plan/add/$', 'api_plan_add'),
+    url(r'^api/collaborator/add/$', 'api_collaborator_add'),
 )
