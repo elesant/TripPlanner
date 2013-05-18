@@ -60,11 +60,25 @@ def api_plan_add(request):
 @csrf_exempt
 @login_required
 @ajax_endpoint
+def api_plan_update(request):
+    response = {}
+    plan_id = request.POST['plan_id']
+    title = request.POST['title']
+    plan = Plan.objects.get(id=plan_id)
+    plan.title = title
+    plan.save()
+    response['plan_id'] = plan.id
+    response['collaborator_id'] = request.user.id
+    return response, 200
+
+
+@csrf_exempt
+@login_required
+@ajax_endpoint
 def api_collaborator_add(request):
     response = {}
     plan_id = request.POST['plan_id']
     plan = Plan.objects.get(id=plan_id)
-    print plan.get_collaborators()
     if request.user in plan.get_collaborators():
         collaborator_id = request.POST.get('collaborator_id', request.user.id)
         collaborator = User.objects.get(id=collaborator_id)
