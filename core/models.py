@@ -51,3 +51,31 @@ class User(AbstractBaseUser, PermissionsMixin):
     class Meta:
         db_table = 'table_user'
         verbose_name = 'User'
+
+
+class Plan(models.Model):
+
+    title = models.CharField(max_length=200)
+    collaborator = models.ManyToManyField(User, through='Collaboration')
+    time_created = models.DateTimeField(auto_now_add=True)
+    time_modified = models.DateTimeField(auto_now=True)
+
+    def __unicode__(self):
+        return self.title
+
+    class Meta:
+        db_table = 'table_plan'
+
+
+class Collaboration(models.Model):
+
+    collaborator = models.ForeignKey(User, related_name='%(class)s_collaborator')
+    plan = models.ForeignKey(Plan, related_name='%(class)s_plan')
+    time_created = models.DateTimeField(auto_now_add=True)
+
+    def __unicode__(self):
+        return '%s <-> %s' % (self.collaborator.email, self.plan)
+
+    class Meta:
+        db_table = 'table_collaboration'
+        unique_together = ('collaborator', 'plan')
