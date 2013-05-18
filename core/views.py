@@ -10,8 +10,11 @@ from django.views.decorators.csrf import csrf_exempt
 from core.models import Plan, User
 from core.utils.yelp import make_yelp_request
 from core.utils.airbnb import make_airbnb_request
+from core.utils.eventbrite import make_eventbrite_request
 from django.contrib.auth.decorators import login_required
 from firebase import firebase
+from summy import summy
+import urllib2
 
 
 def view_landing(request):
@@ -57,6 +60,15 @@ def view_plan(request, plan_id=None):
     except Plan.DoesNotExist:
         raise Http404
     return render_to_response('plan.html', context)
+
+
+@csrf_exempt
+@ajax_endpoint
+def api_link_summarize(request):
+    link = request.POST['link']
+    doc = urllib2.urlopen(link)
+    response = summy.summarize(doc.read())
+    return response, 200
 
 
 @csrf_exempt
@@ -141,6 +153,16 @@ def api_collaborator_add(request):
         return response, 201
     else:
         return response, 403
+
+@csrf_exempt
+@ajax_endpoint
+def get_events_recommendations(request):
+  url_params = {}
+  # TODO add check-in, check-out, num_guests
+  url_params['city'] = request.GET.get('address')
+  num_results = 10
+  response = make_eventbrite_request(url_params)
+  return response, 200
 
 @csrf_exempt
 @ajax_endpoint

@@ -76,6 +76,23 @@ ROOT_URLCONF = '%s.urls' % PROJECT_DIR
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = '%s.wsgi.application' % PROJECT_DIR
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.core.context_processors.request',
+    'django.contrib.messages.context_processors.messages',
+    'core.context_processors.settings',
+)
+
+# For core.context_processors.settings
+TEMPLATE_VISIBLE_SETTINGS = (
+    'DEBUG',
+    'ENVIRONMENT',
+)
+
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_ROOT, 'templates'),
 )
@@ -93,9 +110,11 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
+    'raven.contrib.django.raven_compat',
     'compressor',
     'south',
     'core',
+    'summy',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -133,15 +152,21 @@ LOGIN_URL = '/landing/'
 
 # Yelp API
 YELP_API_CONSTANTS = {
-  'CONSUMER_KEY': 'wK9mRik-g9SFrrlRfvPAsQ',
-  'CONSUMER_SECRET': 'hVvcWP5l4cuC8SpiaJrE7LpMIzQ',
-  'TOKEN': 'DFvHLSzfNqQDbsuLs-1T-zPk-mkZ0Z0d',
-  'TOKEN_SECRET': 'S4pO5Tn65qnP6JMq8Bi1XhDrcDk',
-  'HOST': 'api.yelp.com',
-  'PATH': '/v2/search'
+    'CONSUMER_KEY': 'wK9mRik-g9SFrrlRfvPAsQ',
+    'CONSUMER_SECRET': 'hVvcWP5l4cuC8SpiaJrE7LpMIzQ',
+    'TOKEN': 'DFvHLSzfNqQDbsuLs-1T-zPk-mkZ0Z0d',
+    'TOKEN_SECRET': 'S4pO5Tn65qnP6JMq8Bi1XhDrcDk',
+    'HOST': 'api.yelp.com',
+    'PATH': '/v2/search'
 }
 
 # Airbnb API
 AIRBNB_API_CONSTANTS = {
   'HOST': 'https://airbnb.p.mashape.com/s'
+}
+
+# Eventbrite API
+EVENTBRITE_API_CONSTANTS = {
+  'HOST': 'https://www.eventbrite.com/json/event_search',
+  'APP_KEY': 'IDC723HSMKYMVB2IRY'
 }
