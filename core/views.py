@@ -22,7 +22,7 @@ def view_landing(request):
 @login_required
 def index(request):
     context = RequestContext(request)
-    return render_to_response('index.html', context)
+    return render_to_response('app.html', context)
 
 
 def facebook_login(request):
@@ -42,7 +42,7 @@ def logout(request):
     auth.logout(request)
     return HttpResponseRedirect('/')
 
-
+@login_required
 def app(request):
     context = RequestContext(request)
     return render_to_response('app.html', context)

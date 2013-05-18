@@ -10,11 +10,19 @@ body {
   margin-top: 40px;
 }
 
+.index-body {
+  margin-top: 100px;
+}
+
 .landing h1 {
   margin-top: 120px;
   color: white;
   font-size: 68px;
   text-shadow: 0 0 15px rgba(0,0,0,0.6),0 -1px 1px rgba(0,0,0,0.6);
+}
+
+.cbp-bislideshow {
+  background: black;
 }
 
 .landing h2 {

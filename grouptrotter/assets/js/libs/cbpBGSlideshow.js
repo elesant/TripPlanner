@@ -10,12 +10,16 @@
  */
 var cbpBGSlideshow = (function() {
 
+	function getRandomInt(min, max) {
+	  return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
+
 	var $slideshow = $( '#cbp-bislideshow' ),
 		$items = $slideshow.children( 'li' ),
 		itemsCount = $items.length,
 		$controls = $( '#cbp-bicontrols' ),
 		// current item´s index
-		current = 0,
+		current = getRandomInt(0, itemsCount - 1),
 		// timeout
 		slideshowtime,
 		// true if the slideshow is active

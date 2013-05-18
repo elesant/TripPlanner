@@ -33,3 +33,15 @@ controllers.EventListController = function($scope, angularFire) {
     startWatch($scope);
   });
 };
+
+controllers.PlanListController = function($scope, angularFire) {
+  var url = "https://grouptrotter.firebaseio.com/plans";
+  var promise = angularFire(url, $scope, 'plans');
+
+  function startWatch($scope) {
+  }
+
+  promise.then(function(plans) {
+    startWatch($scope);
+  });
+};

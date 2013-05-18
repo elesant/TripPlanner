@@ -1,0 +1,8 @@
+<div ng-controller="PlanListController" class="container index-body">
+  <ul class="plans-list">
+    <li class="" ng-repeat="plan in plans">
+      <a href="#/plans/{{plan}}">{{plan.title}}</a>
+    </li>
+  </ul>
+  <button ng-click="add()">Add</button>
+</div>
