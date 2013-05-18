@@ -9,6 +9,8 @@ from core.utils.facebook import (build_token_url, get_access_token_expire,
 class FacebookMiddleware(object):
 
     def process_request(self, request):
+        if 'next' in request.GET:
+            request.session['login_redirect_url'] = request.GET['next']
         state = request.GET.get('state', '')
         # Check if request is from Facebook
         if state == 'facebook':
@@ -29,8 +31,8 @@ class FacebookMiddleware(object):
                         user = facebook_connect(user_data)
                         instant_login(request, user)
                     if 'login_redirect_url' in request.session:
-                        login_redirect_url = request.session['login_redirect_url']
+                        login_redirect_url = request.session['login_redirect_url'] + '#/'
                     else:
-                        login_redirect_url = '/#'
-                    request.session['login_redirect_url'] = '/#'
+                        login_redirect_url = '/#/'
+                    print login_redirect_url
                     return HttpResponsePermanentRedirect(login_redirect_url)
