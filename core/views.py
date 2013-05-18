@@ -1,8 +1,4 @@
 import urllib
-import urllib2
-import json
-import oauth2
-
 from core.utils.network import get_domain
 from django.http import HttpResponseRedirect, Http404
 from django.template import RequestContext
@@ -15,8 +11,6 @@ from core.models import Plan, User
 from core.utils.yelp import make_yelp_request
 from django.contrib.auth.decorators import login_required
 from firebase import firebase
-from django.shortcuts import render_to_response
-from django.template import RequestContext
 
 
 def index(request):
@@ -48,7 +42,7 @@ def app(request):
 
 
 @login_required
-def plan(request, plan_id=None):
+def view_plan(request, plan_id=None):
     context = RequestContext(request)
     try:
         plan = Plan.objects.get(id=plan_id)
