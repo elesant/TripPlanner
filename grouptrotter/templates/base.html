@@ -23,10 +23,10 @@
   {% endif %}
   {% endcompress %}
 
-
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular-resource.min.js"></script>
   <script src="https://cdn.firebase.com/v0/firebase.js"></script>
   <script src="https://cdn.firebase.com/v0/firebase-auth-client.js"></script>
-
 
   {% compress js %}
   <script src="{{ STATIC_URL }}js/libs/jquery.js"></script>
@@ -34,7 +34,9 @@
   <script src="{{ STATIC_URL }}js/libs/jquery.imagesloaded.min.js"></script>
   <script src="{{ STATIC_URL }}js/libs/jquery.masonry.min.js"></script>
   <script src="{{ STATIC_URL }}js/libs/modernizr.custom.js"></script>
+  <script src="{{ STATIC_URL }}js/libs/angularFire.js"></script>
   <script src="{{ STATIC_URL }}js/app.js"></script>
+  <script src="{{ STATIC_URL }}js/controllers.js"></script>
   {% endcompress %}
 
   <!-- LESS -->

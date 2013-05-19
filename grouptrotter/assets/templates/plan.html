@@ -1,16 +1,4 @@
-{% extends "base.html" %}
-
-{% load compress %}
-
-{% block title %}{{ plan.title }} | GroupTrotter{% endblock %}
-
-{% block content %}
-
-<div id="plan-id">{{ plan.id }}</div>
-
-{% verbatim %}
-
-<div ng-app="app" class="row dashboard-body">
+<div class="row dashboard-body">
   <div ng-controller="EventListController" class="event-list col col-lg-9">
     <ul class="events-sortable">
       <li class="accordion-group" ng-repeat="item in items">
@@ -34,7 +22,3 @@
     </div>
   </div>
 </div>
-
-{% endverbatim %}
-
-{% endblock %}

@@ -2,6 +2,9 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
+/* PLAN PAGE */
+
+
 .dashboard-body {
   margin-top: 50px;
 }
@@ -12,6 +15,10 @@ body {
 
 .index-body {
   margin-top: 100px;
+}
+
+#event-list {
+  margin-top: 50px;
 }
 
 button.index-create-button {
