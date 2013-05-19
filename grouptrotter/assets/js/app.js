@@ -14,13 +14,12 @@ $(document).ready(function () {
     plan_list.forEach(function(element, index, array) {
       $('#container').append('<div class="item"><a href="/plan/' + element['id'] + '">' + element['title'] + '</a></div>');
     });
-  });
 
-  $(function(){
     $('#container').masonry({
       // options
       itemSelector : '.item',
-      columnWidth : 240
+      columnWidth : 260,
+      isFitWidth: true
     });
   });
 

@@ -14,6 +14,43 @@ body {
   margin-top: 100px;
 }
 
+.index-form-container {
+
+}
+
+#create_list_plan_text {
+  border-radius: 5px;
+  font-size: 24px;
+}
+
+#create_list_plan {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.index-outer {
+  text-align: center;
+  margin-top: 60px;
+}
+
+.index-inner {
+  width: auto;
+  margin: 0 auto;
+}
+
+#container .item {
+  width: 240px;
+  float: left;
+  margin-bottom: 20px;
+
+  text-align: center;
+
+  background: #ddd;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  border-radius: 5px;
+}
+
 .landing h1 {
   margin-top: 120px;
   color: white;

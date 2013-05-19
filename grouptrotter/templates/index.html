@@ -13,20 +13,16 @@
 
 {% if user.is_authenticated %}
 
-<style>
-.item {
-  width: 220px;
-  margin: 10px;
-  float: left;
-}
-</style>
+<div class="container index-outer">
+  <div class="index-form-container">
+    <form id="create_list_plan" class="form-horizontal">
+      <input id="create_list_plan_text" type="text" placeholder="New Plan Name">
+      <button type="submit" class="btn btn-warning create_list_button">Create Plan</button>
+    </form>
+  </div>
 
-<div id="container"></div>
-
-<form id="create_list_plan" class="form-inline">
-  <input id="create_list_plan_text" type="text" placeholder="Plan Name">
-  <button type="submit" class="btn btn-default">Create Plan</button>
-</form>
+  <div class="index-inner" id="container"></div>
+</div>
 
 {% endif %}
 
