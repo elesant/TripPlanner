@@ -133,6 +133,26 @@ def api_plan_update(request):
 @csrf_exempt
 @login_required
 @ajax_endpoint
+def api_firebase_resync(request):
+    response = {}
+    if request.user.is_staff:
+        fb_obj = firebase.FirebaseApplication('https://grouptrotter.firebaseio.com', None)
+        plans = Plan.objects.all()
+        for plan in plans:
+            data = {
+                'title': plan.title,
+                'collaborators': [user.id for user in plan.get_collaborators()],
+            }
+            result = fb_obj.put('/plans', plan.id, data, connection=None)
+            print result
+        return response, 200
+    else:
+        return response, 403
+
+
+@csrf_exempt
+@login_required
+@ajax_endpoint
 def api_collaborator_add(request):
     response = {}
     plan_id = request.POST['plan_id']
