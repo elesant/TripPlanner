@@ -1,15 +1,3 @@
-{% extends "base.html" %}
-
-{% block title %}{{ plan.title }} | GroupTrotter{% endblock %}
-
-{% block content %}
-
-{{ plan.id }}<br />
-
-<div id="plan-title"></div>
-<div id="event-list"></div>
-
-<script>
 $(document).ready(function(){
   var plan_ref = new Firebase('https://grouptrotter.firebaseio.com/plans/{{ plan.id }}');
 
@@ -25,6 +13,3 @@ $(document).ready(function(){
     }
   });
 });
-</script>
-
-{% endblock %}

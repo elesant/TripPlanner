@@ -25,7 +25,7 @@ def view_landing(request):
 @login_required
 def index(request):
     context = RequestContext(request)
-    return render_to_response('app.html', context)
+    return render_to_response('index.html', context)
 
 
 @login_required
