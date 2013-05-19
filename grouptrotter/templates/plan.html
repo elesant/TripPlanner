@@ -13,9 +13,36 @@
 
 <a id="btn-add-event" class="btn btn-success">Add Button</a>
 
+<div id="event-container" style="width:300px;border:1px solid blue;">
+  <div id="event-info-container" style="width:300px;border:1px solid blue;">
+    <p>
+      <strong>Departure:</strong> 7:30pm (UTC: +5:00)</br>
+      <strong>Location:</strong> Toronto Pearson Airport (YYZ)</br>
+      <strong>Arrival:</strong> 2:15am (UTC: +5:00)</br>
+      <strong>Location:</strong> London International Airport (YXU)<br>
+      <br>
+      <strong>Description:</strong><br> Flight C503 - Air Canada
+    </p>
+  </div>
+  <div id="event-comment-container" style="width:300px;border:1px solid blue;">
+    <ul id="comments"></ul>
+    <input id="btn-add-comment" type="text"/>
+  </div>
+</div>
 <script>
 
 $(document).ready(function(){
+  var comments_ref = new Firebase('https://grouptrotter.firebaseio.com/plans/{{ plan.id }}/events/1/comments');
+  $('#btn-add-comment').keypress(function (e) {
+    if (e.which == 13) {
+      comments_ref.push({value:$('#btn-add-comment').val(), commenter:'user1'});
+      $('#btn-add-comment').val('');
+    }
+  });
+  comments_ref.on('child_added', function(snapshot) {
+    $('#comments').append('<li><b>' + snapshot.val().commenter + '</b> ' + snapshot.val().value + '</li>');
+  });
+
   var events_ref = new Firebase('https://grouptrotter.firebaseio.com/plans/{{ plan.id }}/events/');
 
   $('#btn-add-event').click(function() {
