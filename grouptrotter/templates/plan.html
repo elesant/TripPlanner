@@ -5,8 +5,8 @@
 {% block content %}
 
 {{ plan.id }}<br />
-{{ plan.title }}
 
+<div id="plan-title"></div>
 <div id="event-list"></div>
 
 <script>
@@ -17,6 +17,7 @@ plan_ref.on('value', function(snapshot) {
   if(snapshot.val() === null) {
     alert('Plan does not exist!');
   } else {
+    $('#plan-title').html(snapshot.val().title);
     var events = snapshot.val().events;
     $('#event-list').html('');
     events.forEach(function(element, index, array) {
