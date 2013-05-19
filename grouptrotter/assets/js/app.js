@@ -12,7 +12,15 @@ $(document).ready(function () {
   $.get('/api/plan/list', function(data) {
     var plan_list = data['plans'];
     plan_list.forEach(function(element, index, array) {
-      $('#plan-list').append('<div class="well"><a href="/plan/' + element['id'] + '">' + element['title'] + '</a></div>');
+      $('#container').append('<div class="item"><a href="/plan/' + element['id'] + '">' + element['title'] + '</a></div>');
+    });
+  });
+
+  $(function(){
+    $('#container').masonry({
+      // options
+      itemSelector : '.item',
+      columnWidth : 240
     });
   });
 
