@@ -29,8 +29,10 @@ controllers.EventListController = function($scope, $routeParams, angularFire) {
     });
   }
 
-  promise.then(function(todos) {
-    startWatch($scope);
+  $scope.$apply(function() {
+    promise.then(function(todos) {
+      startWatch($scope);
+    });
   });
 };
 
@@ -52,7 +54,9 @@ controllers.PlanListController = function($scope, $location, angularFire) {
         'title': $scope.title
       },
       success: function(data) {
-        $location.path('/plans/' + data.plan_id);
+        $scope.$apply(function() {
+          $location.path('/plans/' + data.plan_id);
+        });
       }
     });
   };
