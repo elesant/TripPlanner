@@ -1,5 +1,5 @@
 from django.contrib import admin
-from core.models import User, Plan, Collaboration
+from core.models import User, Plan, Collaboration, Event
 from django.contrib.sessions.models import Session
 
 
@@ -35,7 +35,14 @@ class PlanAdmin(admin.ModelAdmin):
     list_display = ('title', 'time_created', 'time_modified')
     search_fields = ['title']
 
+
+class EventAdmin(admin.ModelAdmin):
+
+    list_display = ('header', 'category', 'plan', 'time_modified')
+    search_fields = ['header']
+
 admin.site.register(User, UserAdmin)
 admin.site.register(Session)
 admin.site.register(Plan, PlanAdmin)
 admin.site.register(Collaboration)
+admin.site.register(Event, EventAdmin)

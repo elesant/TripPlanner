@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager, UserManager
 from django.utils import timezone
+from core.constants import EVENT_CATEGORY
 
 
 class CustomUserManager(BaseUserManager):
@@ -94,3 +95,18 @@ class Collaboration(models.Model):
     class Meta:
         db_table = 'table_collaboration'
         unique_together = ('collaborator', 'plan')
+
+
+class Event(models.Model):
+
+    header = models.CharField(max_length=200)
+    category = models.CharField(max_length=1, choices=EVENT_CATEGORY)
+    plan = models.ForeignKey(Plan)
+    time_created = models.DateTimeField(auto_now_add=True)
+    time_modified = models.DateTimeField(auto_now=True)
+
+    def __unicode__(self):
+        return self.header
+
+    class Meta:
+        db_table = 'table_event'

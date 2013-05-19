@@ -7,7 +7,7 @@ from django.conf import settings
 from django.contrib import auth
 from core.decorators import ajax_endpoint
 from django.views.decorators.csrf import csrf_exempt
-from core.models import Plan, User
+from core.models import Plan, User, Event
 from core.utils.yelp import make_yelp_request
 from core.utils.airbnb import make_airbnb_request
 from core.utils.eventbrite import make_eventbrite_request
@@ -102,16 +102,8 @@ def api_plan_add(request):
     new_plan = Plan(title=title)
     new_plan.save()
     new_plan.add_collaborator(request.user)
-    fb_obj = firebase.FirebaseApplication('https://grouptrotter.firebaseio.com', None)
-    plan_url = '/plans'
-    data = {
-        'title': new_plan.title,
-        'collaborators': [user.id for user in new_plan.get_collaborators()],
-    }
-    result = fb_obj.put(plan_url, new_plan.id, data, connection=None)
     response['plan_id'] = new_plan.id
     response['collaborator_id'] = request.user.id
-    response['firebase_result'] = result
     return response, 201
 
 
@@ -125,16 +117,28 @@ def api_plan_update(request):
     plan = Plan.objects.get(id=plan_id)
     plan.title = title
     plan.save()
-    fb_obj = firebase.FirebaseApplication('https://grouptrotter.firebaseio.com', None)
-    plan_url = '/plans/%s' % plan.id
-    data = {
-        'title': plan.title,
-    }
-    result = fb_obj.patch(plan_url, data, connection=None)
     response['plan_id'] = plan.id
     response['collaborator_id'] = request.user.id
-    response['firebase_result'] = result
     return response, 200
+
+
+@csrf_exempt
+@login_required
+@ajax_endpoint
+def api_event_add(request):
+    response = {}
+    header = request.POST['header']
+    category = request.POST['category']
+    plan_id = request.POST['plan_id']
+    plan = Plan.objects.get(id=plan_id)
+    new_event = Event()
+    new_event.header = header
+    new_event.category = category
+    new_event.plan = plan
+    new_event.save()
+    response['event_id'] = new_event.id
+    response['collaborator_id'] = request.user.id
+    return response, 201
 
 
 @csrf_exempt
@@ -168,15 +172,8 @@ def api_collaborator_add(request):
         collaborator_id = request.POST.get('collaborator_id', request.user.id)
         collaborator = User.objects.get(id=collaborator_id)
         plan.add_collaborator(collaborator)
-        fb_obj = firebase.FirebaseApplication('https://grouptrotter.firebaseio.com', None)
-        plan_url = '/plans/%s' % plan.id
-        data = {
-            'collaborators': [user.id for user in plan.get_collaborators()],
-        }
-        result = fb_obj.patch(plan_url, data, connection=None)
         response['plan_id'] = plan_id
         response['collaborator_id'] = collaborator_id
-        response['firebase_result'] = result
         return response, 201
     else:
         return response, 403
