@@ -19,6 +19,7 @@ urlpatterns = patterns('core.views',
     url(r'^api/collaborator/add/$', 'api_collaborator_add'),
     url(r'^api/event/list/$', 'api_event_list'),
     url(r'^api/event/add/$', 'api_event_add'),
+    url(r'^api/event/reorder/$', 'api_event_reorder'),
     url(r'^api/link/summarize/$', 'api_link_summarize'),
     url(r'^api/firebase/resync/$', 'api_firebase_resync'),
 )

@@ -115,4 +115,3 @@ class Event(models.Model):
 
     class Meta:
         db_table = 'table_event'
-        unique_together = ('order', 'plan')

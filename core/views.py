@@ -162,6 +162,41 @@ def api_event_add(request):
 @csrf_exempt
 @login_required
 @ajax_endpoint
+def api_event_reorder(request):
+    response = {}
+    plan_id = request.POST['plan_id']
+    plan = Plan.objects.get(id=plan_id)
+    src_order = int(request.POST['src_order'])
+    dest_order = int(request.POST['dest_order'])
+    src_event = Event.objects.get(order=src_order, plan=plan)
+    if src_order < dest_order:
+      dec_events = Event.objects.filter(order__range=[src_order + 1, dest_order])
+      for event in dec_events:
+        event.order -= 1
+        event.save()
+      inc_events = Event.objects.filter(order__gt=dest_order)
+      for event in inc_events:
+        event.order += 1
+        event.save()
+    else:
+      inc_events = Event.objects.filter(order__range=[dest_order, src_order - 1])
+      print inc_events
+      for event in inc_events:
+        event.order += 1
+        event.save()
+      dec_events = Event.objects.filter(order__gt=src_order)
+      print dec_events
+      for event in dec_events:
+        event.order -= 1
+        event.save()
+    src_event.order = dest_order
+    src_event.save()
+    return response, 200
+
+
+@csrf_exempt
+@login_required
+@ajax_endpoint
 def api_firebase_resync(request):
     response = {}
     if request.user.is_staff:
