@@ -1,0 +1,7 @@
+@font-face {
+  font-family: 'Glyphicons';
+  src: local('☺'), url('http://font-service.herokuapp.com/glyphicons-regular/glyphicons-regular.eot');
+  src: url('http://font-service.herokuapp.com/glyphicons-regular/glyphicons-regular.eot?#iefix') format('embedded-opentype'), url('http://font-service.herokuapp.com/glyphicons-regular/glyphicons-regular.woff') format('woff'), url('http://font-service.herokuapp.com/glyphicons-regular/glyphicons-regular.ttf') format('truetype'), url('http://font-service.herokuapp.com/glyphicons-regular/glyphicons-regular.svg#glyphicons_halflingsregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
