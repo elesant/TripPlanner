@@ -21,6 +21,8 @@ $('#btn-add-event').click(function() {
 });
 
 $(document).ready(function(){
+    $('#event-list').sortable({ axis: "x" });
+
   var plan_ref = new Firebase('https://grouptrotter.firebaseio.com/plans/{{ plan.id }}');
   plan_ref.on('value', function(snapshot) {
     if(snapshot.val() === null) {
