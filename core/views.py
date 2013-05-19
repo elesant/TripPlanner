@@ -28,6 +28,12 @@ def index(request):
     return render_to_response('app.html', context)
 
 
+@login_required
+def view_test(request):
+    context = RequestContext(request)
+    return render_to_response('test.html', context)
+
+
 def facebook_login(request):
     login_link = 'https://www.facebook.com/dialog/oauth?' + urllib.urlencode(
         {

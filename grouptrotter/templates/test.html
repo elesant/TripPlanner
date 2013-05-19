@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Test | GroupTrotter{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+{{ user.display_name }}
+<a class="btn btn-default" href="/logout">Logout</a>
+{% else %}
+<a class="btn btn-primary" href="/facebook-login">Facebook Connect</a>
+{% endif %}
+
+<br /><br />
+
+{% if user.is_authenticated %}
+
+<div id="plan-list"></div>
+
+<script>
+
+$(document).ready(function() {
+
+  $.get('/api/plan/list', function(data) {
+    var plan_list = data['plans'];
+    plan_list.forEach(function(element, index, array) {
+      $('#plan-list').append('<div class="well"><a href="/plan/' + element['id'] + '">' + element['title'] + '</a></div>');
+    });
+  });
+
+});
+
+</script>
+
+{% endif %}
+
+{% endblock %}
