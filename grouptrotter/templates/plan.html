@@ -4,27 +4,33 @@
 
 {% block content %}
 
-{{ plan.id }}<br />
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+{{ plan.id }}
 
 <div id="plan-title"></div>
 <div id="event-list"></div>
 
 <script>
+
 $(document).ready(function(){
   var plan_ref = new Firebase('https://grouptrotter.firebaseio.com/plans/{{ plan.id }}');
-
   plan_ref.on('value', function(snapshot) {
     if(snapshot.val() === null) {
       alert('Plan does not exist!');
     } else {
+      $('#plan-title').html(snapshot.val().title);
       var events = snapshot.val().events;
       $('#event-list').html('');
-      events.forEach(function(element, index, array) {
-        $('#event-list').append(element + '<br />');
-      });
+      if (events != undefined) {
+          events.forEach(function(element, index, array) {
+            $('#event-list').append(element + '<br />');
+          });
+      }
     }
   });
 });
+
 </script>
 
 {% endblock %}
