@@ -135,6 +135,7 @@ def api_event_add(request):
     new_event.header = header
     new_event.category = category
     new_event.plan = plan
+    new_event.order = len(plan.get_events())
     new_event.save()
     response['event_id'] = new_event.id
     response['collaborator_id'] = request.user.id

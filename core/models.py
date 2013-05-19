@@ -79,6 +79,10 @@ class Plan(models.Model):
         collaborators = [collaboration.collaborator for collaboration in Collaboration.objects.filter(plan=self)]
         return collaborators
 
+    def get_events(self):
+        events = [event for event in Event.objects.filter(plan=self)]
+        return events
+
     class Meta:
         db_table = 'table_plan'
 
@@ -102,6 +106,7 @@ class Event(models.Model):
     header = models.CharField(max_length=200)
     category = models.CharField(max_length=1, choices=EVENT_CATEGORY)
     plan = models.ForeignKey(Plan)
+    order = models.PositiveIntegerField(default=0)
     time_created = models.DateTimeField(auto_now_add=True)
     time_modified = models.DateTimeField(auto_now=True)
 
@@ -110,3 +115,4 @@ class Event(models.Model):
 
     class Meta:
         db_table = 'table_event'
+        unique_together = ('order', 'plan')
