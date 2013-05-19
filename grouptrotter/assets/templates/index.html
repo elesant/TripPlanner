@@ -1,8 +1,11 @@
 <div ng-controller="PlanListController" class="container index-body">
-  <ul class="plans-list">
+  <ul class="nav nav-pills nav-stacked">
+    <li class="" ng-repeat="plan in plans">
+      <a href="#/plans/{{plan.id}}">{{plan.title}}</a>
+    </li>
   </ul>
   <form class="form-inline" ng-submit="addPlan()">
-    <input type="text" ng-model="titlea" placeholder="Name of Title">
+    <input type="text" ng-model="title" placeholder="Name Your Trip">
     <button type="submit" class="btn btn-default">Create New Trip</button>
   </form>
 </div>

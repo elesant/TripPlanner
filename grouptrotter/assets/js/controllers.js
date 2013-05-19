@@ -38,10 +38,22 @@ controllers.PlanListController = function($scope, $location, angularFire) {
   var promise = $.get('/api/plan/list');
 
   promise.then(function(data) {
-    var plan_list = data['plans'];
-    plan_list.forEach(function(element) {
-      var element = $('<li class=""><a href="#/plans/' + element.id + '">' + element.title + '</a></li>');
-      $('.plans-list').append(element);
+    $scope.$apply(function() {
+      var plan_list = data['plans'];
+      $scope.plans = plan_list;
     });
   });
+
+  $scope.addPlan = function() {
+    $.ajax({
+      type: "POST",
+      url: '/api/plan/add/',
+      data: {
+        'title': $scope.title
+      },
+      success: function(data) {
+        $location.path('/plans/' + data.plan_id);
+      }
+    });
+  };
 };
