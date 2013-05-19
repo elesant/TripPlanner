@@ -13,7 +13,15 @@
 
 {% if user.is_authenticated %}
 
-<div id="plan-list"></div>
+<style>
+.item {
+  width: 220px;
+  margin: 10px;
+  float: left;
+}
+</style>
+
+<div id="container"></div>
 
 <form id="create_list_plan" class="form-inline">
   <input id="create_list_plan_text" type="text" placeholder="Plan Name">
