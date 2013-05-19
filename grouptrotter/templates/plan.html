@@ -72,6 +72,11 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
+  var m = new Menu(document.querySelector('nav'), {
+   radius: 130,
+   degrees: 90,
+   offset: -90
+  });
   $('div.event-comment-container').livequery(function() {
     var $container = $(this);
 
