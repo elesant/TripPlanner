@@ -2,7 +2,7 @@ var app = angular.module('app', ['firebase']);
 app.config(function($routeProvider) {
   $routeProvider.
     when('/', {controller: app.PlanListController, templateUrl:'{{STATIC_URL}}templates/index.html'}).
-    when('/plans', {controller: app.EventListController, templateUrl:'{{STATIC_URL}}templates/plan.html'}).
+    when('/plans/:planid', {controller: app.EventListController, templateUrl:'{{STATIC_URL}}templates/plan.html'}).
     otherwise({redirectTo:'/'});
 });
 

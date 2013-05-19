@@ -1,8 +1,8 @@
 var controllers = {};
 app.controller(controllers);
 
-controllers.EventListController = function($scope, angularFire) {
-  var url = "https://grouptrotter.firebaseio.com/testlist";
+controllers.EventListController = function($scope, $routeParams, angularFire) {
+  var url = 'https://grouptrotter.firebaseio.com/plans/' + $routeParams.planid + '/events';
   var promise = angularFire(url, $scope, 'items');
   var sortableEle = null;
 
@@ -34,15 +34,14 @@ controllers.EventListController = function($scope, angularFire) {
   });
 };
 
-controllers.PlanListController = function($scope, angularFire) {
-  var url = "https://grouptrotter.firebaseio.com/plans";
-  var promise = angularFire(url, $scope, 'plans');
+controllers.PlanListController = function($scope, $location, angularFire) {
+  var promise = $.get('/api/plan/list');
 
-  function startWatch($scope) {
-
-  }
-
-  promise.then(function(plans) {
-    startWatch($scope);
+  promise.then(function(data) {
+    var plan_list = data['plans'];
+    plan_list.forEach(function(element) {
+      var element = $('<li class=""><a href="#/plans/' + element.id + '">' + element.title + '</a></li>');
+      $('.plans-list').append(element);
+    });
   });
 };

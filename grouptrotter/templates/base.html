@@ -18,7 +18,9 @@
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/component.css" />
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/background-slideshow.css" />
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css" />
+  {% if not DEBUG %}
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.css" />
+  {% endif %}
   {% endcompress %}
 
 
@@ -27,23 +29,37 @@
   <script src="https://cdn.firebase.com/v0/firebase.js"></script>
   <script src="https://cdn.firebase.com/v0/firebase-auth-client.js"></script>
 
+
   {% compress js %}
   <script src="{{ STATIC_URL }}js/libs/jquery.js"></script>
   <script src="{{ STATIC_URL }}js/libs/jquery-ui-1.10.3.custom.min.js"></script>
   <script src="{{ STATIC_URL }}js/libs/jquery.imagesloaded.min.js"></script>
   <script src="{{ STATIC_URL }}js/libs/modernizr.custom.js"></script>
   <script src="{{ STATIC_URL }}js/libs/angularFire.js"></script>
-  <script src="{{ STATIC_URL }}js/modules.js"></script>
-  <script src="{{ STATIC_URL }}js/app.js"></script>
-  <script src="{{ STATIC_URL }}js/directives.js"></script>
-  <script src="{{ STATIC_URL }}js/animations.js"></script>
-  <script src="{{ STATIC_URL }}js/controllers.js"></script>
   {% endcompress %}
+
+  {% compress js %}
+    <script src="{{ STATIC_URL }}js/app.js"></script>
+  {% endcompress %}
+
+  {% if not DEBUG %}
+    {% compress js %}
+    <script src="{{ STATIC_URL }}js/modules.js"></script>
+    <script src="{{ STATIC_URL }}js/directives.js"></script>
+    <script src="{{ STATIC_URL }}js/animations.js"></script>
+    <script src="{{ STATIC_URL }}js/controllers.js"></script>
+    {% endcompress %}
+  {% else %}
+    <script src="{{ STATIC_URL }}js/modules.js"></script>
+    <script src="{{ STATIC_URL }}js/directives.js"></script>
+    <script src="{{ STATIC_URL }}js/animations.js"></script>
+    <script src="{{ STATIC_URL }}js/controllers.js"></script>
+  {% endif %}
 
   <!-- LESS -->
   {% if DEBUG %}
-  <script src="{{ STATIC_URL }}js/libs/less.js"></script>
   <link rel="stylesheet/less" type="text/css" href="{{ STATIC_URL }}less/bootstrap/bootstrap.less" />
+  <script src="{{ STATIC_URL }}js/libs/less.js"></script>
   {% endif %}
 
   <script src="{{ STATIC_URL }}js/bootstrap/bootstrap-transition.js"></script>
