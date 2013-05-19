@@ -17,11 +17,12 @@
 
 $('#btn-add-event').click(function() {
     var events_ref = new Firebase('https://grouptrotter.firebaseio.com/plans/{{ plan.id }}/events/');
-    events_ref.push({header: 'test'});
+    events_ref.push({header: 'test ' + Math.random()});
 });
 
 $(document).ready(function(){
-    $('#event-list').sortable({ axis: "x" });
+    $('#event-list').sortable({ axis: 'y' });
+    $('#event-list').disableSelection();
 
   var plan_ref = new Firebase('https://grouptrotter.firebaseio.com/plans/{{ plan.id }}');
   plan_ref.on('value', function(snapshot) {
@@ -33,7 +34,7 @@ $(document).ready(function(){
       $('#event-list').html('');
       for(var key in events) {
         var datum = events[key];
-        $('#event-list').append(datum.header + Math.random() + '<br />');
+        $('#event-list').append('<div class="well">' + datum.header + '</div>');
       }
     }
   });
