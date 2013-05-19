@@ -11,7 +11,14 @@
 <div id="plan-title"></div>
 <div id="event-list"></div>
 
+<a id="btn-add-event" class="btn btn-success">Add Button</a>
+
 <script>
+
+$('#btn-add-event').click(function() {
+    var events_ref = new Firebase('https://grouptrotter.firebaseio.com/plans/{{ plan.id }}/events/');
+    events_ref.push({header: 'test'});
+});
 
 $(document).ready(function(){
   var plan_ref = new Firebase('https://grouptrotter.firebaseio.com/plans/{{ plan.id }}');
@@ -22,10 +29,9 @@ $(document).ready(function(){
       $('#plan-title').html(snapshot.val().title);
       var events = snapshot.val().events;
       $('#event-list').html('');
-      if (events != undefined) {
-          events.forEach(function(element, index, array) {
-            $('#event-list').append(element + '<br />');
-          });
+      for(var key in events) {
+        var datum = events[key];
+        $('#event-list').append(datum.header + Math.random() + '<br />');
       }
     }
   });
