@@ -15,14 +15,24 @@
 
 <script>
 
-$('#btn-add-event').click(function() {
-    var events_ref = new Firebase('https://grouptrotter.firebaseio.com/plans/{{ plan.id }}/events/');
-    events_ref.push({header: 'test ' + Math.random()});
-});
-
 $(document).ready(function(){
-    $('#event-list').sortable({ axis: 'y' });
-    $('#event-list').disableSelection();
+  var events_ref = new Firebase('https://grouptrotter.firebaseio.com/plans/{{ plan.id }}/events/');
+
+  $('#btn-add-event').click(function() {
+      events_ref.push({header: 'test ' + Math.random()});
+  });
+
+  var dragEnd = function(e, ui) {
+    var start = ui.item.data('start'),
+          end = ui.item.index();
+
+  };
+
+  $('#event-list').sortable({
+    start: function (){},
+    end: dragEnd
+  });
+  $('#event-list').disableSelection();
 
   var plan_ref = new Firebase('https://grouptrotter.firebaseio.com/plans/{{ plan.id }}');
   plan_ref.on('value', function(snapshot) {
