@@ -9,6 +9,8 @@ controllers.EventListController = function($scope, $routeParams, angularFire) {
 
   function startWatch($scope) {
 
+    $scope.planid = planid;
+
     $scope.dragStart = function(e, ui) {
       ui.item.data('start', ui.item.index());
     }
@@ -21,8 +23,12 @@ controllers.EventListController = function($scope, $routeParams, angularFire) {
     }
 
     $scope.add = function() {
-        $scope.items.push('Item: '+ $scope.items.length);
+      $scope.items.push({
+        name: 'test',
+        id: generateGuid()
+      });
     }
+
 
     sortableEle = $('.events-sortable').sortable({
         start: $scope.dragStart,

@@ -12,16 +12,32 @@
 
 <div ng-app="app" class="row dashboard-body">
   <div ng-controller="EventListController" class="event-list col col-lg-9">
-    <ul class="events-sortable">
+    <ul class="events-sortable cbp_tmtimeline">
       <li class="accordion-group" ng-repeat="item in items">
-        <div class="accordion-heading">
+        <div class="cbp_tmicon cbp_tmicon-phone"></div>
+        <div class="accordion-heading cbp_tmlabel">
           <a href="#collapse{{$index}}" class="accordion-toggle" data-toggle="collapse" data-parent=".events-sortable">
-            {{ item }}
+            {{item}}
           </a>
-        </dsiv>
-        <div id="collapse{{$index}}" class="accordion-body collapse">
+        </div>
+        <div id="collapse{{$index}} " class="accordion-body collapse">
           <div class="accordion-inner">
-            test
+            <div id="event-container" style="width:300px;border:1px solid blue;">
+              <div id="event-info-container" style="width:300px;border:1px solid blue;">
+                <p>
+                  <strong>Departure:</strong> 7:30pm (UTC: +5:00)</br>
+                  <strong>Location:</strong> Toronto Pearson Airport (YYZ)</br>
+                  <strong>Arrival:</strong> 2:15am (UTC: +5:00)</br>
+                  <strong>Location:</strong> London International Airport (YXU)<br>
+                  <br>
+                  <strong>Description:</strong><br> Flight C503 - Air Canada
+                </p>
+              </div>
+            </div>
+            <div data-plan-id="{{planid}}" data-event-id="{{$index}}" class="event-comment-container" style="width:300px;border:1px solid blue;">
+              <ul class="comments-ul">
+              </ul>
+            </div>
           </div>
         </div>
       </li>
@@ -36,5 +52,33 @@
 </div>
 
 {% endverbatim %}
+
+<div id="plan-title"></div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $('div.event-comment-container').livequery(function() {
+    var $container = $(this);
+
+    // attach firebase ref
+    var planid = $(this).attr('data-plan-id');
+    var eventid = $(this).attr('data-event-id');
+
+    //var comments = 'https://grouptrotter.firebaseio.com/plans/' + planid + '/events/' + eventid + '/comments';
+    //console.log(comments);
+    var comments_ref = new Firebase('https://grouptrotter.firebaseio.com/plans/' + planid + '/events/' + eventid + '/comments');
+
+    /*$(this).find('#btn-add-comment').keypress(function (e) {
+      if (e.which == 13) {
+        comments_ref.push({value:$(this).val(), commenter:'user1'});
+        $('#btn-add-comment').val('');
+      }
+    });*/
+    comments_ref.on('child_added', function(snapshot) {
+      $(this).find('.comments-ul').append('<li><b>' + snapshot.val().commenter + '</b> ' + snapshot.val().value + '</li>');
+    });
+  });
+});
+</script>
 
 {% endblock %}
