@@ -4,40 +4,6 @@
 
 {% block content %}
 
-{% verbatim %}
-
-<div ng-app="app">
-  <div class="navbar" >
-    <a class="navbar-brand" href="#">GroupTrotter</a>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">Link</a></li>
-      <li><a href="#">Link</a></li>
-    </ul>
-    <ul class="nav navbar-nav pull-right">
-      <li id="fat-menu" class="dropdown">
-        <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">Dropdown 3 <b class="caret"></b></a>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-          <li role="presentation" class="divider"></li>
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-        </ul>
-      </li>
-    </ul>
-  </div>
-  <div class="row">
-    <div class="col col-lg-9">9<w/div>
-    <!-- -->
-
-    <div class="col col-lg-3">3
-    </div>
-  </div>
-</div>
-
-{% endverbatim %}
-
 {% if user.is_authenticated %}
 {{ user.display_name }}
 <a class="btn btn-default" href="/logout">Logout</a>
@@ -49,18 +15,14 @@
 
 <div id="plan-list"></div>
 
+<form id="create_list_plan" class="form-inline">
+  <input id="create_list_plan_text" type="text" placeholder="Plan Name">
+  <button type="submit" class="btn btn-default">Create Plan</button>
+</form>
+
 <script>
 
-$(document).ready(function() {
 
-  $.get('/api/plan/list', function(data) {
-    var plan_list = data['plans'];
-    plan_list.forEach(function(element, index, array) {
-      $('#plan-list').append('<div class="well"><a href="/plan/' + element['id'] + '">' + element['title'] + '</a></div>');
-    });
-  });
-
-});
 
 </script>
 

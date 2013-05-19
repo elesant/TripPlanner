@@ -24,8 +24,6 @@
   {% endcompress %}
 
 
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular-resource.min.js"></script>
   <script src="https://cdn.firebase.com/v0/firebase.js"></script>
   <script src="https://cdn.firebase.com/v0/firebase-auth-client.js"></script>
 
@@ -35,26 +33,8 @@
   <script src="{{ STATIC_URL }}js/libs/jquery-ui-1.10.3.custom.min.js"></script>
   <script src="{{ STATIC_URL }}js/libs/jquery.imagesloaded.min.js"></script>
   <script src="{{ STATIC_URL }}js/libs/modernizr.custom.js"></script>
-  <script src="{{ STATIC_URL }}js/libs/angularFire.js"></script>
+  <script src="{{ STATIC_URL }}js/app.js"></script>
   {% endcompress %}
-
-  {% compress js %}
-    <script src="{{ STATIC_URL }}js/app.js"></script>
-  {% endcompress %}
-
-  {% if not DEBUG %}
-    {% compress js %}
-    <script src="{{ STATIC_URL }}js/modules.js"></script>
-    <script src="{{ STATIC_URL }}js/directives.js"></script>
-    <script src="{{ STATIC_URL }}js/animations.js"></script>
-    <script src="{{ STATIC_URL }}js/controllers.js"></script>
-    {% endcompress %}
-  {% else %}
-    <script src="{{ STATIC_URL }}js/modules.js"></script>
-    <script src="{{ STATIC_URL }}js/directives.js"></script>
-    <script src="{{ STATIC_URL }}js/animations.js"></script>
-    <script src="{{ STATIC_URL }}js/controllers.js"></script>
-  {% endif %}
 
   <!-- LESS -->
   {% if DEBUG %}
@@ -69,6 +49,30 @@
 </head>
 
 <body>
+
+<div>
+  <div class="navbar navbar-fixed-top" >
+    <a class="navbar-brand" href="#">GroupTrotter</a>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Link</a></li>
+      <li><a href="#">Link</a></li>
+    </ul>
+    <ul class="nav navbar-nav pull-right">
+      <li id="fat-menu" class="dropdown">
+        <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">Dropdown 3 <b class="caret"></b></a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+          <li role="presentation" class="divider"></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+
   {% block content %}{% endblock %}
 </body>
 </html>
