@@ -125,6 +125,23 @@ def api_plan_update(request):
 @csrf_exempt
 @login_required
 @ajax_endpoint
+def api_event_list(request):
+    response = {}
+    plan_id = request.POST['plan_id']
+    plan = Plan.objects.get(id=plan_id)
+    events = plan.get_events()
+    response['events'] = []
+    for event in events:
+        datum = {}
+        datum['id'] = event.id
+        datum['header'] = event.header
+        response['events'].append(datum)
+    return response, 200
+
+
+@csrf_exempt
+@login_required
+@ajax_endpoint
 def api_event_add(request):
     response = {}
     header = request.POST['header']

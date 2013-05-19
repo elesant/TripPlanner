@@ -80,7 +80,7 @@ class Plan(models.Model):
         return collaborators
 
     def get_events(self):
-        events = [event for event in Event.objects.filter(plan=self)]
+        events = [event for event in Event.objects.filter(plan=self).order_by('order')]
         return events
 
     class Meta:

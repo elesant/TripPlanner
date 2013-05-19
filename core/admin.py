@@ -38,7 +38,7 @@ class PlanAdmin(admin.ModelAdmin):
 
 class EventAdmin(admin.ModelAdmin):
 
-    list_display = ('header', 'category', 'plan', 'time_modified')
+    list_display = ('header', 'category', 'plan', 'order', 'time_modified')
     search_fields = ['header']
 
 admin.site.register(User, UserAdmin)
