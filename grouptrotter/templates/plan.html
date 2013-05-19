@@ -11,6 +11,7 @@
 <div id="plan-title"></div>
 <div id="event-list"></div>
 
+<input id="input-event-header" type="text" />
 <a id="btn-add-event" class="btn btn-success">Add Button</a>
 
 <div id="event-container" style="width:300px;border:1px solid blue;">
@@ -31,6 +32,8 @@
 </div>
 <script>
 
+var plan_ref = new Firebase('https://grouptrotter.firebaseio.com/plans/{{ plan.id }}');
+
 $(document).ready(function(){
   var comments_ref = new Firebase('https://grouptrotter.firebaseio.com/plans/{{ plan.id }}/events/1/comments');
   $('#btn-add-comment').keypress(function (e) {
@@ -43,10 +46,12 @@ $(document).ready(function(){
     $('#comments').append('<li><b>' + snapshot.val().commenter + '</b> ' + snapshot.val().value + '</li>');
   });
 
-  var events_ref = new Firebase('https://grouptrotter.firebaseio.com/plans/{{ plan.id }}/events/');
+  var events_ref = plan_ref.child('events');
 
   $('#btn-add-event').click(function() {
-      events_ref.push({header: 'test ' + Math.random()});
+    var header = $('#input-event-header').val();
+    events_arr = events_ref.push({header: header});
+    events_ref.set(events_arr);
   });
 
   var dragEnd = function(e, ui) {
@@ -61,8 +66,7 @@ $(document).ready(function(){
   });
   $('#event-list').disableSelection();
 
-  var plan_ref = new Firebase('https://grouptrotter.firebaseio.com/plans/{{ plan.id }}');
-  plan_ref.on('value', function(snapshot) {
+    plan_ref.on('value', function(snapshot) {
     if(snapshot.val() === null) {
       alert('Plan does not exist!');
     } else {
