@@ -107,6 +107,7 @@ def api_plan_add(request):
     data = {
         'title': new_plan.title,
         'collaborators': [user.id for user in new_plan.get_collaborators()],
+        'events': [],
     }
     result = fb_obj.put(plan_url, new_plan.id, data, connection=None)
     response['plan_id'] = new_plan.id
