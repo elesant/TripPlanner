@@ -1,4 +1,4 @@
-# HackBase Project [![Live Demo](http://usekite.com/live-demo-button.png?)](http://usekite.com/deploy/Elesant/TripPlanner) [![Live Demo](https://usekite.com/live-demo-button.png)](https://localhost/deploy)
+# HackBase Project [![Live Demo](http://usekite.com/live-demo-button.png?)](http://usekite.com/deploy/Elesant/TripPlanner) [![Live Demo](https://usekite.com/live-demo-button.png)](https://localhost/deploy) [![Live Demo](https://usekite.com/live-demo-button.png)](https://usekite.com/deploy)
 
 This is a basic boilerplate for quick development and deployment with Django and Heroku.
 
